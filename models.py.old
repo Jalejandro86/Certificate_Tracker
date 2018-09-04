@@ -1,0 +1,29 @@
+from django.db import models
+from datetime import datetime
+ 
+
+class URL(models.Model):
+	AirlineID_VendorID = models.CharField(max_length=3, default="XX")
+	Application_URL = models.CharField(max_length=200, default="test.com",primary_key=True)
+	def __str__(self):
+		return self.Application_URL
+	
+class Root(models.Model):
+	Root_Certificate_ID = models.AutoField(primary_key=True)
+	Root_Certificate = models.CharField(max_length=200)
+	Expiration_date = models.DateTimeField(default=datetime.now, blank=True)
+	def __str__(self):
+		return self.Root_Certificate
+	
+class Intermediate(models.Model):
+	Intermidiate_Certificate_ID = models.AutoField(primary_key=True)
+	Intermidiate_Certificate = models.CharField(max_length=200)
+	Expiration_date = models.DateTimeField(default=datetime.now, blank=True)
+	def __str__(self):
+		return self.Intermidiate_Certificate
+		
+class Identity(models.Model):
+	Identity_Certificate = models.CharField(max_length=200)
+	Expiration_date = models.DateTimeField(default=datetime.now, blank=True)
+	def __str__(self):
+		return self.Identity_Certificate
